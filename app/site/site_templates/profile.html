@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="m-3">
+    <h2 class="text-center">You are signed in</h2>
+    <div class="profile-info">
+        <div class="p-1">Email: {{ current_user.email }}</div>
+        <div class="p-1">Token: {{ current_user.token }}</div>
+    </div>
+</section>
+{% endblock %}

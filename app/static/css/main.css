@@ -8,8 +8,12 @@ body {
     padding-top: 50px;
 }
 
-.navbar {
+.navbar-brand {
     height: 50px;
+}
+
+.navbar-brand {
+    margin: 0 1rem;
 }
 
 .nav-link, .navbar-toggler i {
@@ -20,6 +24,10 @@ body {
     color: rgba(255,255,255,.8);
 }
 
+.nav-link {
+    margin: 0 10px;
+}
+
 .navbar .container {
     background-color: black;
 }
@@ -27,3 +35,26 @@ body {
 .form-container {
     max-width: 400px;
 }
+
+.form-control {
+    width: 96%;
+    padding: 0.375rem 2%;
+}
+
+.container, .row {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.profile-info {
+    max-width: 600px;
+    margin: auto;
+    word-wrap: break-word;
+    background-color: #E7E9EB;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* * {
+    border: 1px solid red;
+} */

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-center">
+    <div class="p-3">
+        <h2>Cars that have been added:</h2>
+        <ul class="list-unstyled">
+            {% for car in cars %}
+                <li>{{ car.year }} {{ car.make }} {{ car.model }}</li>
+            {% endfor  %}
+        </ul>
+    </div>
+</section>
+
+{% endblock %}

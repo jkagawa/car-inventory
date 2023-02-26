@@ -20,14 +20,14 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.String, primary_key=True)
     first_name = db.Column(db.String(150), nullable=True, default='')
-    last_name = db.Column(db.String(150), nullable=True, default = '')
-    email = db.Column(db.String(150), nullable=False)
-    password = db.Column(db.String, nullable=True, default = '')
-    g_auth_verify = db.Column(db.Boolean, default=False)
-    token = db.Column(db.String, default = '', unique=True )
+    last_name = db.Column(db.String(150), nullable=True, default='')
+    email = db.Column(db.String(150), nullable=False, default='')
+    password = db.Column(db.String, nullable=True, default='')
+    g_auth_verify = db.Column(db.Boolean, nullable=False, default=False)
+    token = db.Column(db.String, nullable=False, default='', unique=True)
     date_created = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
 
-    def __init__(self, email, first_name='', last_name='', password='', token='', g_auth_verify=False):
+    def __init__(self, email, first_name, last_name, password, g_auth_verify):
         self.id = self.set_id()
         self.first_name = first_name
         self.last_name = last_name
@@ -48,3 +48,35 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'User {self.email} has been added to the database'
+    
+class Car(db.Model):
+    id = db.Column(db.String, primary_key = True)
+    make = db.Column(db.String(100), nullable = False, default='')
+    model = db.Column(db.String(100), nullable = False, default='')
+    year = db.Column(db.Integer, nullable = False, default='')
+    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False, default='')
+
+    def __init__(self, make, model, year, user_token):
+        self.id = self.set_id()
+        self.make = make
+        self.model = model
+        self.year = year
+        self.user_token = user_token
+
+    def __repr__(self):
+        return f'The car has been added to the inventory: {self.year} {self.make} {self.model} ({self.id})'
+
+    def set_id(self):
+        return (secrets.token_urlsafe())
+
+class CarSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'make', 'model', 'year', 'user_token']
+
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'email']
+
+car_schema = CarSchema()
+car_multi_schema = CarSchema(many=True)
+user_schema = UserSchema()

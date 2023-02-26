@@ -4,13 +4,4 @@
 <section class="m-3">
     <h1 class="text-center">Welcome to the Car Inventory website</h1>
 </section>
-<section class="text-center">
-    <h3>Users who have signed up:</h3>
-    <ul class="list-unstyled">
-        {% for user in users %}
-            <li>{{ user.email }}</li>
-        {% endfor  %}
-    </ul>
-</section>
-
 {% endblock %}

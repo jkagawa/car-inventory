@@ -27,17 +27,23 @@
                         <a href="{{ url_for('site.home') }}" class="nav-link fs-5">Home</a>
                     </li>
                     <li class="nav-item text-end">
-                        <a href="#" class="nav-link fs-5">Cars</a>
+                        <a href="{{ url_for('site.cars') }}" class="nav-link fs-5">Cars</a>
+                    </li>
+                    {% if current_user.is_authenticated  %}
+                    <li class="nav-item text-end">
+                        <a href="{{ url_for('site.profile') }}" class="nav-link fs-5">Profile</a>
                     </li>
                     <li class="nav-item text-end">
-                        <a href="#" class="nav-link fs-5">Logout</a>
+                        <a href="{{ url_for('auth.logout') }}" class="nav-link fs-5">Logout</a>
                     </li>
+                    {% else %}
                     <li class="nav-item text-end">
-                        <a href="#" class="nav-link fs-5">Sign In</a>
+                        <a href="{{ url_for('auth.signin') }}" class="nav-link fs-5">Sign In</a>
                     </li>
                     <li class="nav-item text-end">
                         <a href="{{ url_for('auth.signup') }}" class="nav-link fs-5">Sign Up</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
