@@ -52,8 +52,8 @@ def get_single_car(current_user_token, id):
 @token_required
 def update_car(current_user_token, id):
     user_token = current_user_token.token
-    car = Car.query.filter_by(user_token=user_token, id=id).all()
-    if car:
+    car = Car.query.get(id)
+    if car and car.user_token == user_token:
         car.make = request.json['make']
         car.model = request.json['model']
         car.year = request.json['year']

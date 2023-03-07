@@ -6,7 +6,7 @@
         <h2>Cars that have been added:</h2>
         <ul class="list-unstyled">
             {% for car in cars %}
-                <li>{{ car.year }} {{ car.make }} {{ car.model }}</li>
+                <li>{{ car.year }} {{ car.make }} {{ car.model }} - ID: {{ car.id }}</li>
             {% endfor  %}
         </ul>
     </div>
